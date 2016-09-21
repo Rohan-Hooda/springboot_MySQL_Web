@@ -1,0 +1,41 @@
+<html layout:decorator="layout">
+
+<div layout:fragment="content">
+
+    <a class="btn btn-primary" href="/posts/new">Add new Item</a>
+
+    <table class="table table-striped" id="posts_list">
+        <thead>
+        <tr>
+            <th>ItemID</th>
+            <th>Quantity</th>
+            <th>Action</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="post : ${posts}">
+        	<td class="message" data-th-text="${post.ItemID}"></td>
+            <td class="message" data-th-text="${post.Quantity}"></td>
+
+            <td>
+                <a th:href="@{'/posts/{id}/delete'(id=${post.ItemID})}" class="delete" th:attr="name=${post.Quantity}">
+                        <span class="fa-stack">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </span>
+                </a>
+            </td>
+
+            <td>
+                <a th:href="@{'/posts/{id}/edit'(id=${post.ItemID})}" class="edit" th:attr="name=${post.Quantity}">
+                    <span class="fa-stack">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </span>
+
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>
